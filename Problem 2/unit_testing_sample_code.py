@@ -1,6 +1,6 @@
 # COMP 333 Software Engineering
 # Wesleyan University
-# Alex Kaplan (akaplan01@wesleyan.edu) and Sebastian Zimmeck (szimmeck@wesleyan.edu)
+
 
 """
 Capitalizes the first and last character of a string.
