@@ -1,0 +1,95 @@
+const SongRatingApp = require('./songRatingApp');
+
+describe('SongRatingApp', () => {
+  let songRatingApp;
+
+  beforeEach(() => {
+    songRatingApp = new SongRatingApp();
+  });
+
+  test('should add a rating for a song', () => {
+    songRatingApp.rateSong('song1', 4);
+    expect(songRatingApp.ratings).toHaveLength(1);
+    expect(songRatingApp.ratings[0]).toEqual({ songId: 'song1', rating: 4 });
+  });
+
+  test('should calculate the average rating for a song', () => {
+    songRatingApp.rateSong('song1', 3);
+    songRatingApp.rateSong('song1', 5);
+    expect(songRatingApp.getAverageRating('song1')).toBe(4);
+  });
+
+  test('should return 0 for average rating if no ratings for a song', () => {
+    expect(songRatingApp.getAverageRating('song2')).toBe(0);
+  });
+
+  test('should get the highest-rated song', () => {
+    songRatingApp.rateSong('song1', 3);
+    songRatingApp.rateSong('song2', 5);
+    songRatingApp.rateSong('song3', 4);
+    expect(songRatingApp.getHighestRatedSong()).toEqual({ songId: 'song2', rating: 5 });
+  });
+
+  test('should return null if no ratings for the highest-rated song', () => {
+    expect(songRatingApp.getHighestRatedSong()).toBeNull();
+  });
+
+  test('should throw an error for an invalid rating', () => {
+    expect(() => songRatingApp.rateSong('song1', 6)).toThrow('Invalid rating. Rating must be a number between 1 and 5.');
+  });
+});
+In this example, we use Jest's describe and test functions to structure the tests. The beforeEach function is used to create a new instance of SongRatingApp before each test, ensuring a clean state for each test. The test cases cover different scenarios for rating songs, calculating average ratings, getting the highest-rated song, and handling errors for invalid ratings.
+
+User
+add a test for navigating from one page on the app to another
+ChatGPT
+Navigating from one page to another in a web app typically involves interaction with the DOM and handling user events. If you're using a framework like React, Angular, or Vue, there are specific tools and patterns for testing navigation. However, since you've mentioned a web frontend without specifying a framework, I'll provide a general example using Jest and vanilla JavaScript.
+
+Let's assume you have a PageNavigator class responsible for managing page navigation. This class might have methods like goToPage to navigate to a specific page and getCurrentPage to retrieve the current page.
+
+javascript
+Copy code
+// pageNavigator.js
+
+class PageNavigator {
+  constructor() {
+    this.currentPage = 'home';
+  }
+
+  goToPage(page) {
+    this.currentPage = page;
+  }
+
+  getCurrentPage() {
+    return this.currentPage;
+  }
+}
+
+module.exports = PageNavigator;
+Now, let's write a Jest test for navigating from one page to another:
+
+javascript
+Copy code
+// pageNavigator.test.js
+
+const PageNavigator = require('./pageNavigator');
+
+describe('PageNavigator', () => {
+  let pageNavigator;
+
+  beforeEach(() => {
+    pageNavigator = new PageNavigator();
+  });
+
+  test('should navigate from home to about page', () => {
+    pageNavigator.goToPage('home');
+    expect(pageNavigator.getCurrentPage()).toBe('home');
+
+    // Simulate navigating to the 'about' page
+    pageNavigator.goToPage('about');
+
+    // Assert that the current page is now 'about'
+    expect(pageNavigator.getCurrentPage()).toBe('about');
+  });
+
+});
