@@ -59,9 +59,75 @@ Once everything is downloaded, modified, and placed in the correct places, we ca
 ./vendor/bin/phpunit SongRatingAppTest.php
 ```
 
+One thing to keep a note of is the test input in the files we provided were probably already ran and could cause a fail if ran again. For example, the input in the "testPost_updateSong()" test function could not pass if the input isn't being changed every time is is being ran. Else, it should all pass as such:
+
+ ![SuccesfullTestsPHP](./Php_Install_Instructions/Screenshots/Backend_Pass.png)
+
 # Problem 4
 
+## Local Set Up
+
+In order to get problem 4 working, we first need to set up our React app locally. Navigate to a directory where you would like to place your React app and then through the terminal, run the following prompt:
+
+```bash
+npx create-react-app myReactNameApp
+```
+Now that your React application is downloaded, we can replace all of the files inside of the src folder and replacing them with our src folder files inside of the Problem 4 folder. After this step, we can now naviagte inside the src folder through our terminal, and we will now install Jest to test the front end. There are instructions in the 'testing-setup.md' file but you should run the command:
+
+```bash
+npm install --save-dev jest
+```
+As well as Babel:
+
+```bash
+npm install --save-dev babel-jest @babel/core @babel/preset-env
+```
+
+After following these two crucial steps, make sure that they produced 2 additional files in your React app, a 'jest.config.js' and a 'babel.config.js', both of which are in our repo that you should copy and paste to the ones in your app to make it run.
+
+Additionally, our React App makes use of a package called Axios that you should install inside the React app directory through your terminal by running the command:
+
+```bash
+ npm install axios
+```
+
+Finally, from the react files that we have in our repo, most of them have lines with links such as:
+
+```jsx
+ axios.get(`http://localhost/homework5/Controller/RestApi/Ratings/Read_ratings.php`)
+```
+
+This shows how we are connecting our frontend with the backend files that we talked about in problem 3. For it to work correctly, we change our IP from problem 3, to localhost, followed by the folder name in which you stored the backend files in the XAMPP htdocs folder. Additionally, make sure to change the 'Access-Control-Allow-Origin' from the IP to local host. For example:
+
+```php
+header("Access-Control-Allow-Origin: http://129.133.185.148");
+```
+
+to 
+
+```php
+header("Access-Control-Allow-Origin: http://localhost");
+```
+
+for the ones with IP already there.
+
+
+Within the files, our test files are the [Login.test.js](./Problem4/src/Login.test.js) and [Registration.test.js](./Problem4/src/Registration.test.js) files. In order to run these tests, you can run the following command:
+
+```bash
+  npm run test
+```
+
+If everything ran correctly, which it did on our side, you should see all passing tests, as such:
+
+ ![SuccesfullTestsReact](./Php_Install_Instructions/Screenshots/React_Test_Passed.png)
+
+
 # Problem 5
+
+
+
+
 
 # Problem 6
 
