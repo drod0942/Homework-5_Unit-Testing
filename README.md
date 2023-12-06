@@ -125,13 +125,17 @@ If everything ran correctly, which it did on our side, you should see all passin
 
 # Problem 5
 
+When doing github actions, these are the scores:
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 6 passed, 7 total
 
+Unfortunately, since we use Axios to call the backend, it is giving us endless issues. I hope these majority pass is sufficient.
 
 
 
 # Problem 6
 
-While we did not use generative AI, there are many ways that it could aid the testing of our app.
+While we did not use generative AI greatly to create more tests apart from the ones assigned, there are many ways that it could aid the testing of our app.
 
 One use of generative AI would be to generate test cases to cover a wide variety of scenarios that humans would miss.  For example, it can efficiently create a large number of examples to be tested or used as data for the tests.  This saves a lot of time for the developers of the app.
 
